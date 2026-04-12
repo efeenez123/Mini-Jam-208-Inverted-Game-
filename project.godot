@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Mini Jam 208: Inverted"
+config/name="New Game Project"
+run/main_scene="uid://qitt2rcrw2bc"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
