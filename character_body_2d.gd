@@ -1,66 +1,166 @@
 extends CharacterBody2D
 
-var speed = 450.0 # Hızı biraz artırdım
-var health = 100
-var mermi_sahnesi = preload("res://Mermi.tscn")
+@export var tilemap : TileMapLayer
 
-@onready var anim = $AnimationPlayer
-@onready var sprite = $Sprite2D
+var tablo = []
+var tablobomba = []
 
-func _ready():
-	add_to_group("Player")
+var yatay = 16
+var dikey = 16
 
-func _physics_process(_delta):
-	var direction = Vector2.ZERO
+var karakter_transform
+var karakter_kordinant
+
+var Can = 100
+var hasar = false
+
+var bomba_patlama_süresi = 1.5
+var sifirlama_sure =2.5
+var hedef_bomba = 20
+var yerlestirilen_bomba = 0
+
+func _ready() -> void:
 	
-	if Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A): direction.x -= 1
-	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D): direction.x += 1
-	if Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W): direction.y -= 1
-	if Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S): direction.y += 1
+	karakter_kordinant = tilemap.local_to_map(global_position)
+	for x in range(yatay):
+		tablo.append([])
+		for y in range(dikey):
+			tablo[x].append(0)
+			tilemap.set_cell(Vector2i(x,y),0,Vector2i(0,0))
+	Duzenek()
 
-	velocity = direction.normalized() * speed
-	move_and_slide()
-
-	# EKRAN SINIRLARI
-	global_position.x = clamp(global_position.x, -512, 512)
-	global_position.y = clamp(global_position.y, 4, 250)
-
-	# ANİMASYON VE YÖN
-	if direction != Vector2.ZERO:
-		anim.play("new_animation") 
-		if direction.x < 0:
-			sprite.flip_h = true
-		elif direction.x > 0:
-			sprite.flip_h = false
-	else:
-		anim.stop()
-
-	if Input.is_action_just_pressed("ui_accept"): 
-		ates_et()
-
-func ates_et():
-	if mermi_sahnesi:
-		var yeni_mermi = mermi_sahnesi.instantiate()
-		get_tree().current_scene.add_child(yeni_mermi)
-		yeni_mermi.global_position = global_position
-
-# CAN BARI BURADA GÜNCELLENİYOR
-func hasar_al(miktar):
-	health -= miktar
-	
-	# UI katmanındaki can barını bul ve değerini güncelle
-	var bar = get_tree().current_scene.get_node_or_null("UI/PlayerCanBar")
-	if bar:
-		bar.value = health
-	
-	print("💔 Ah! Hasar aldık! Kalan Canımız: ", health)
-	
-	if health <= 0:
-		print("☠️ BİZ ÖLDÜK! Game Over.")
-		
-		# Ölünce UI katmanındaki gizli butonu bul ve görünür (visible) yap
-		var buton = get_tree().current_scene.get_node_or_null("UI/YenidenDeneButonu")
-		if buton:
-			buton.visible = true
 			
-		queue_free() # Karakteri sahneden sil
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+		
+		karakter_kordinant = tilemap.local_to_map(global_position)
+		if karakter_kordinant.x >= 0 and karakter_kordinant.x < yatay  and karakter_kordinant.y >= 0 and karakter_kordinant.y < dikey  : 
+			
+			if event.is_action_pressed("a") and karakter_kordinant.x > 0: 
+				karakter_kordinant = Vector2i(karakter_kordinant.x -1 , karakter_kordinant.y) 
+				karakter_kordinant = karakter_kordinant 
+				print(karakter_kordinant)
+				
+			if event.is_action_pressed("d") and karakter_kordinant.x < yatay -1:
+				karakter_kordinant = Vector2i(karakter_kordinant.x +1 , karakter_kordinant.y)
+				print(karakter_kordinant)
+				
+			if event.is_action_pressed("w") and karakter_kordinant.y > 0:
+				karakter_kordinant = Vector2i(karakter_kordinant.x, karakter_kordinant.y -1)
+				print(karakter_kordinant)
+				
+			if event.is_action_pressed("s") and karakter_kordinant.y < dikey -1 :
+				karakter_kordinant = Vector2i(karakter_kordinant.x, karakter_kordinant.y +1 )
+				print(karakter_kordinant)
+				
+			global_position = tilemap.map_to_local(karakter_kordinant)
+			HasarKontrol()
+			
+func sifirlama():
+	await get_tree().create_timer(sifirlama_sure).timeout
+	for x in range(yatay):
+		for y in range(dikey):
+			tablo[x][y] = 0
+			tilemap.set_cell(Vector2i(x,y),0,Vector2i(0,0))
+	yerlestirilen_bomba = 0
+	
+func RastGele_Bomba():
+	while yerlestirilen_bomba < hedef_bomba:
+		var rastgeleY =  int(randi() % yatay)
+		var rastgeleX = int(randi() % dikey)
+		if tablo[rastgeleX][rastgeleY] == 0:
+			tablo[rastgeleX][rastgeleY] = 1
+			tilemap.set_cell(Vector2i(rastgeleX,rastgeleY),0,Vector2i(1,0))
+			yerlestirilen_bomba = yerlestirilen_bomba + 1 
+	RastGele_Bomba_Aktif()
+	sifirlama()
+		
+func RastGele_Bomba_Aktif():
+	await get_tree().create_timer(bomba_patlama_süresi).timeout
+	for a in range(yatay):
+		for b in range(dikey):
+			if tablo[a][b] == 1:
+				tilemap.set_cell(Vector2i(a,b),0,Vector2i(2,0))
+				tablo[a][b] = 2 
+	HasarKontrol()
+		
+func HasarKontrol():
+	if tablo[karakter_kordinant.x][karakter_kordinant.y] == 2 :
+		Can = Can - 10
+		print(Can)
+		
+func Duzenek():
+	hedef_bomba = hedef_bomba + 10
+	RastGele_Bomba()
+	await get_tree().create_timer(5).timeout
+	hedef_bomba = hedef_bomba + 11
+	RastGele_Bomba()
+	await get_tree().create_timer(4).timeout
+	hedef_bomba = hedef_bomba + 12
+	RastGele_Bomba()
+	await get_tree().create_timer(3).timeout
+	hedef_bomba = hedef_bomba + 13
+	RastGele_Bomba()
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 14
+	RastGele_Bomba()
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 15
+	RastGele_Bomba()
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 17
+	RastGele_Bomba()
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 20
+	RastGele_Bomba()
+	sifirlama_sure = 2 
+	bomba_patlama_süresi = 1 
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 20
+	RastGele_Bomba()
+	print("Son20")
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 20 
+	RastGele_Bomba()
+	print("Son")
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 32 
+	RastGele_Bomba()
+	print("Son30")
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 20 
+	RastGele_Bomba()
+	print("Son40")
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 20
+	RastGele_Bomba()
+	print("Son")
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 3
+	RastGele_Bomba()
+	print("Son3
+	")
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 3
+	RastGele_Bomba()
+	print("Son33")
+	await get_tree().create_timer(2.5).timeout
+	hedef_bomba = hedef_bomba + 1
+	RastGele_Bomba()
+	print("Son333")
+	hedef_bomba = hedef_bomba + 1
+	RastGele_Bomba()
+	print("Son333")
+	hedef_bomba = hedef_bomba + 1
+	RastGele_Bomba()
+	print("Son333")
+
+	
+
+	
+	
+	
+	
+	
+	
+	
