@@ -1,11 +1,95 @@
 [gd_scene format=3 uid="uid://bu2bx3fkehdrb"]
 
-[ext_resource type="Script" uid="uid://dgjv42gt1db7r" path="res://mikrafon.gd" id="1_124vb"]
 [ext_resource type="Texture2D" uid="uid://suxigd1iyu5r" path="res://mikrafon/Sprite/icon.svg" id="1_jmwcg"]
 [ext_resource type="Script" uid="uid://b181ossojrjta" path="res://spam.gd" id="2_8e6bx"]
 [ext_resource type="Texture2D" uid="uid://bf5svgqoks1dy" path="res://Sprite-0002-sheet.png" id="3_124vb"]
-[ext_resource type="Script" uid="uid://f73r8jcheeav" path="res://kontrol.gd" id="3_cpqr4"]
 [ext_resource type="PackedScene" uid="uid://xuxv8323gt3x" path="res://spam.tscn" id="3_g52tk"]
+
+[sub_resource type="GDScript" id="GDScript_g52tk"]
+script/source = "extends Node2D
+
+var spam_sahnesi = preload(\"res://spam.tscn\")
+var harfler = [\"w\", \"a\", \"s\", \"d\"]
+
+var uretilen_nota = 0
+var hiz_carpani = 1.0
+
+func _on_timer_timeout():
+	# 70 NOTA SINIRI
+	if uretilen_nota >= 70:
+		$Timer.stop()
+		return
+		
+	uretilen_nota += 1
+	
+	var yeni_spam = spam_sahnesi.instantiate()
+	yeni_spam.harf_degeri = harfler.pick_random()
+	yeni_spam.ekstra_hiz = hiz_carpani 
+	yeni_spam.global_position = $Marker2D.global_position 
+	get_tree().current_scene.add_child(yeni_spam)
+	
+	# AGRESİF ZORLUK ARTIŞI
+	# Bekleme süresi min 0.22 saniyeye kadar düşebilir (Çok seri!)
+	$Timer.wait_time = max($Timer.wait_time - 0.05, 0.22)
+	
+	# Maksimum ilerleme hızı 4.5 katına çıkabilir
+	hiz_carpani = min(hiz_carpani + 0.12, 4.5)
+"
+
+[sub_resource type="GDScript" id="GDScript_cpqr4"]
+script/source = "extends Area2D
+
+var icerideki_notalar = []
+var puan = 0
+var isabet_sayisi = 0
+var kacan_sayisi = 0
+
+@onready var skor_label = get_node(\"../CanvasLayer/SkorYazisi\")
+
+func _on_area_entered(area: Area2D) -> void:
+	if \"harf_degeri\" in area:
+		icerideki_notalar.append(area)
+
+func _on_area_exited(area: Area2D) -> void:
+	if area in icerideki_notalar:
+		icerideki_notalar.erase(area)
+		kacan_sayisi += 1
+		area.queue_free() 
+		oyun_bitti_mi_kontrol_et()
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+		if icerideki_notalar.size() > 0:
+			var hedef_nota = icerideki_notalar[0]
+			var basilan_harf = \"\"
+			
+			if Input.is_action_just_pressed(\"w\"): basilan_harf = \"w\"
+			elif Input.is_action_just_pressed(\"a\"): basilan_harf = \"a\"
+			elif Input.is_action_just_pressed(\"s\"): basilan_harf = \"s\"
+			elif Input.is_action_just_pressed(\"d\"): basilan_harf = \"d\"
+			
+			if basilan_harf != \"\":
+				if basilan_harf == hedef_nota.harf_degeri:
+					isabet_sayisi += 1
+					puan += 10
+					
+					# Arayüzü güncelle (0/30 hedefi görünüyor)
+					skor_label.text = str(isabet_sayisi) + \"/30\"
+					
+					icerideki_notalar.pop_front()
+					hedef_nota.queue_free()
+					oyun_bitti_mi_kontrol_et()
+				else:
+					print(\"Yanlış tuş!\")
+
+func oyun_bitti_mi_kontrol_et():
+	# Toplam 70 nota geçtiğinde oyun sonu kararı verilir
+	if (isabet_sayisi + kacan_sayisi) >= 70:
+		if isabet_sayisi >= 30:
+			skor_label.text = \"BAŞARILI! (\" + str(isabet_sayisi) + \"/70)\"
+		else:
+			skor_label.text = \"BAŞARISIZ! (\" + str(isabet_sayisi) + \"/70)\"
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmwcg"]
 size = Vector2(66, 125)
@@ -65,7 +149,7 @@ animations = [{
 }]
 
 [node name="mikrafon" type="Node2D" unique_id=132951304]
-script = ExtResource("1_124vb")
+script = SubResource("GDScript_g52tk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=166472567]
 position = Vector2(686, 472)
@@ -73,7 +157,7 @@ scale = Vector2(10.84375, 1)
 texture = ExtResource("1_jmwcg")
 
 [node name="kontrol" type="Area2D" parent="." unique_id=1375512924]
-script = ExtResource("3_cpqr4")
+script = SubResource("GDScript_cpqr4")
 
 [node name="Icon" type="Sprite2D" parent="kontrol" unique_id=858418176]
 position = Vector2(627, 466)
@@ -94,6 +178,7 @@ shape = SubResource("CircleShape2D_jmwcg")
 [node name="w" type="AnimatedSprite2D" parent="kontrol/spam" unique_id=1728957551]
 position = Vector2(1300, 613)
 sprite_frames = SubResource("SpriteFrames_4vrco")
+animation = &"a"
 
 [node name="spam" parent="." unique_id=1551820143 instance=ExtResource("3_g52tk")]
 position = Vector2(1675, 811)

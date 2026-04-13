@@ -1,3 +1,27 @@
 [gd_scene format=3 uid="uid://bn048sqi6rh73"]
 
+[ext_resource type="Script" uid="uid://bdox5yj3x3nim" path="res://Scene/ana_menu.gd" id="1_fgxap"]
+[ext_resource type="Texture2D" uid="uid://bo27rbngcpkv4" path="res://5c.png" id="2_bah4m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yujt"]
+bg_color = Color(0.75819176, 0.7581918, 0.75819165, 1)
+
 [node name="Ana_menu" type="Node2D" unique_id=546928280]
+script = ExtResource("1_fgxap")
+
+[node name="Panel" type="Panel" parent="." unique_id=463591530]
+offset_right = 1160.0
+offset_bottom = 654.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2yujt")
+
+[node name="Button" type="Button" parent="Panel" unique_id=853685231]
+modulate = Color(6.0262012, 5.498733, 2.5008464, 1)
+layout_mode = 0
+offset_left = 433.0
+offset_top = 186.0
+offset_right = 701.0
+offset_bottom = 454.0
+theme_override_font_sizes/font_size = 70
+theme_override_icons/icon = ExtResource("2_bah4m")
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b3f6he3v08asn"]
+
+[ext_resource type="Texture2D" uid="uid://cr66q6ml5ug3r" path="res://Hastane ve dahası/hastane (1).png" id="1_xdadj"]
+[ext_resource type="Texture2D" uid="uid://dlfd16cgy0w62" path="res://Sigara Sahne Cizimler/kibrit/kibrit kutu titreme1.png" id="2_1y8me"]
+[ext_resource type="Texture2D" uid="uid://cqj7h64grfyfn" path="res://Sigara Sahne Cizimler/sigara/sigara titreme1.png" id="3_n7ypv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s5r2"]
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+
+[node name="level_2" type="Node2D" unique_id=1034009048]
+
+[node name="Panel" type="Panel" parent="." unique_id=1304285214]
+offset_left = -87.00001
+offset_top = -67.00001
+offset_right = 1070.0
+offset_bottom = 601.0
+scale = Vector2(1.1946679, 1.3308773)
+theme_override_styles/panel = SubResource("StyleBoxFlat_0s5r2")
+
+[node name="Hastane(1)" type="Sprite2D" parent="." unique_id=951472056]
+position = Vector2(549.00006, 346.00006)
+scale = Vector2(0.24749102, 0.23655847)
+texture = ExtResource("1_xdadj")
+
+[node name="KibritKutuTitreme1" type="Sprite2D" parent="." unique_id=292828044]
+position = Vector2(704, 246)
+scale = Vector2(0.3220339, 0.30952382)
+texture = ExtResource("2_1y8me")
+
+[node name="SigaraTitreme1" type="Sprite2D" parent="." unique_id=759575725]
+position = Vector2(927.00006, 295)
+scale = Vector2(0.2988142, 0.24095774)
+texture = ExtResource("3_n7ypv")
+
+[node name="Label" type="Label" parent="." unique_id=142273747]
+offset_left = 587.0
+offset_top = 409.0
+offset_right = 991.0
+offset_bottom = 464.0
+theme_override_colors/font_color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+theme_override_font_sizes/font_size = 40
+text = "You shouldn't smoke"
+
+[node name="Label2" type="Label" parent="." unique_id=957238296]
+offset_left = 15.0
+offset_top = 138.0
+offset_right = 178.0
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0.40784314, 0.40784314, 0.40784314, 1)
+theme_override_font_sizes/font_size = 50
+text = "Smoke"
