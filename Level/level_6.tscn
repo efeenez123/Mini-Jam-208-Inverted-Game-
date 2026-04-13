@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://d1q7v7sq7y3p7"]
+
+[ext_resource type="Script" uid="uid://nfim4ybel75f" path="res://Level/level_6.gd" id="1_nq0mh"]
+[ext_resource type="Texture2D" uid="uid://cr66q6ml5ug3r" path="res://Hastane ve dahası/hastane (1).png" id="2_iu4hj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vf6qg"]
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pdu6"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="level_6" type="Node2D" unique_id=958563293]
+script = ExtResource("1_nq0mh")
+
+[node name="Panel" type="Panel" parent="." unique_id=2028778173]
+offset_left = -87.00001
+offset_top = -67.00001
+offset_right = 1070.0
+offset_bottom = 601.0
+scale = Vector2(1.1946679, 1.3308773)
+theme_override_styles/panel = SubResource("StyleBoxFlat_vf6qg")
+
+[node name="Button" type="Button" parent="Panel" unique_id=1605578957]
+layout_mode = 0
+offset_left = 642.8565
+offset_top = 346.38806
+offset_right = 884.7647
+offset_bottom = 423.38806
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_6pdu6")
+text = "Smoke"
+
+[node name="Hastane(1)" type="Sprite2D" parent="." unique_id=1643844213]
+position = Vector2(549.00006, 346.00006)
+scale = Vector2(0.24749102, 0.23655847)
+texture = ExtResource("2_iu4hj")
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

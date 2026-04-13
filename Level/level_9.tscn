@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bfblvntno6vpo"]
+
+[ext_resource type="Texture2D" uid="uid://cr66q6ml5ug3r" path="res://Hastane ve dahası/hastane (1).png" id="1_c657b"]
+[ext_resource type="Script" uid="uid://b53k8vx1200g6" path="res://Level/level_9.gd" id="1_v7qwc"]
+[ext_resource type="Texture2D" uid="uid://sexp7n2la8c3" path="res://can/kibrit+.png" id="2_v7qwc"]
+[ext_resource type="Texture2D" uid="uid://32g8ey1edlqo" path="res://Hastane ve dahası/mikrafon (1).png" id="4_6uwqf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6uwqf"]
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5muih"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5muih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6uwqf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="level_9" type="Node2D" unique_id=1768443441]
+script = ExtResource("1_v7qwc")
+
+[node name="Panel" type="Panel" parent="." unique_id=1727740331]
+offset_left = -87.00001
+offset_top = -67.00001
+offset_right = 1070.0
+offset_bottom = 601.0
+scale = Vector2(1.1946679, 1.3308773)
+theme_override_styles/panel = SubResource("StyleBoxFlat_6uwqf")
+
+[node name="Button2" type="Button" parent="Panel" unique_id=204511392]
+layout_mode = 0
+offset_left = 621.9301
+offset_top = 418.52094
+offset_right = 863.8383
+offset_bottom = 495.52094
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_5muih")
+text = "Next"
+
+[node name="Hastane(1)" type="Sprite2D" parent="." unique_id=1869697271]
+position = Vector2(549.00006, 346.00006)
+scale = Vector2(0.24749102, 0.23655847)
+texture = ExtResource("1_c657b")
+
+[node name="Label" type="Label" parent="." unique_id=1525947330]
+offset_left = 579.0
+offset_top = 371.0
+offset_right = 1109.0
+offset_bottom = 484.0
+theme_override_colors/font_color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+theme_override_font_sizes/font_size = 40
+text = "You'll remember! You can't 
+smoke that cigarette."
+
+[node name="Kibrit+" type="Sprite2D" parent="." unique_id=1606086569]
+position = Vector2(415.00003, 385.00003)
+scale = Vector2(0.17654575, 0.20901649)
+texture = ExtResource("2_v7qwc")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1483437932]
+position = Vector2(823, 209)
+scale = Vector2(0.14226554, 0.13578269)
+sprite_frames = SubResource("SpriteFrames_5muih")
+
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]

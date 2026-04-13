@@ -1,9 +1,31 @@
 [gd_scene format=3 uid="uid://dpex0c370pxbd"]
 
 [ext_resource type="Script" uid="uid://dfr65iiqrywv3" path="res://character_body_2d.gd" id="1_ij6vw"]
-[ext_resource type="Texture2D" uid="uid://suxigd1iyu5r" path="res://mikrafon/Sprite/icon.svg" id="2_ghijl"]
+[ext_resource type="Texture2D" uid="uid://dtaea3y0juxsp" path="res://can/sprite_sheet.png" id="2_ij6vw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_44cfe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghijl"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44cfe"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dd465"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghijl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44cfe")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1435999456]
 scale = Vector2(0.57609993, 0.54187334)
@@ -12,8 +34,20 @@ script = ExtResource("1_ij6vw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=956031850]
 shape = SubResource("CircleShape2D_44cfe")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1148986378]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2142396836]
 position = Vector2(0.35725588, -0.24440098)
 rotation = -1.7971681
 scale = Vector2(0.124502085, 0.13216263)
-texture = ExtResource("2_ghijl")
+sprite_frames = SubResource("SpriteFrames_dd465")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.3250098
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1729571880]
+
+[node name="CanYazisi" type="Label" parent="CanvasLayer" unique_id=1929295397]
+offset_left = 398.0
+offset_top = 43.0
+offset_right = 707.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 50

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://pjqcku1oq3wv"
+path="res://.godot/imported/arkaplan oyun mzk ara sahne.wav-ff8b060187e00a25764a5e2650a5bdbb.sample"
+
+[deps]
+
+source_file="res://Hastane ve dahası/arkaplan oyun mzk ara sahne.wav"
+dest_files=["res://.godot/imported/arkaplan oyun mzk ara sahne.wav-ff8b060187e00a25764a5e2650a5bdbb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://bu2bx3fkehdrb"]
 
-[ext_resource type="Texture2D" uid="uid://suxigd1iyu5r" path="res://mikrafon/Sprite/icon.svg" id="1_jmwcg"]
 [ext_resource type="Script" uid="uid://b181ossojrjta" path="res://spam.gd" id="2_8e6bx"]
 [ext_resource type="Texture2D" uid="uid://bf5svgqoks1dy" path="res://Sprite-0002-sheet.png" id="3_124vb"]
 [ext_resource type="PackedScene" uid="uid://xuxv8323gt3x" path="res://spam.tscn" id="3_g52tk"]
+[ext_resource type="Texture2D" uid="uid://b3hwki6fs1pu8" path="res://Hastane ve dahası/Kiz/kız1 (1).png" id="4_ywj5b"]
+[ext_resource type="Texture2D" uid="uid://b8rlrafdfcdv4" path="res://Hastane ve dahası/Kiz/kız2 (1).png" id="5_ik0ck"]
+[ext_resource type="Texture2D" uid="uid://bgfycsebpivj4" path="res://Hastane ve dahası/Kiz/kız3 (1).png" id="6_grwes"]
+[ext_resource type="Texture2D" uid="uid://bxdknnfhnlrwr" path="res://Hastane ve dahası/Kiz/kız4 (1).png" id="7_uxng0"]
+[ext_resource type="Texture2D" uid="uid://bgi6pxnteupjn" path="res://Hastane ve dahası/Kiz/kız5.png" id="8_w7sfv"]
+[ext_resource type="Texture2D" uid="uid://b5fjjecasowby" path="res://Hastane ve dahası/Kiz/kız6.png" id="9_hw86d"]
+[ext_resource type="Texture2D" uid="uid://32g8ey1edlqo" path="res://Hastane ve dahası/mikrafon (1).png" id="10_jwnxs"]
+[ext_resource type="AudioStream" uid="uid://ddhud440dv0yv" path="res://Ses/minigame son.wav" id="11_ik0ck"]
 
 [sub_resource type="GDScript" id="GDScript_g52tk"]
 script/source = "extends Node2D
@@ -74,7 +81,7 @@ func _input(event: InputEvent) -> void:
 					puan += 10
 					
 					# Arayüzü güncelle (0/30 hedefi görünüyor)
-					skor_label.text = str(isabet_sayisi) + \"/30\"
+					skor_label.text = str(isabet_sayisi) + \"/25\"
 					
 					icerideki_notalar.pop_front()
 					hedef_nota.queue_free()
@@ -85,10 +92,14 @@ func _input(event: InputEvent) -> void:
 func oyun_bitti_mi_kontrol_et():
 	# Toplam 70 nota geçtiğinde oyun sonu kararı verilir
 	if (isabet_sayisi + kacan_sayisi) >= 70:
-		if isabet_sayisi >= 30:
+		if isabet_sayisi >= 25:
 			skor_label.text = \"BAŞARILI! (\" + str(isabet_sayisi) + \"/70)\"
+			await get_tree().create_timer(3).timeout
+			get_tree().change_scene_to_file(\"res://Level/level_17.tscn\")
 		else:
 			skor_label.text = \"BAŞARISIZ! (\" + str(isabet_sayisi) + \"/70)\"
+			await get_tree().create_timer(3).timeout
+			get_tree().reload_current_scene()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmwcg"]
@@ -148,20 +159,64 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pva61"]
+bg_color = Color(0.8685501, 0.8380874, 0.85413855, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njm2m"]
+atlas = ExtResource("4_ywj5b")
+region = Rect2(0, 0, 2000, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmp8r"]
+atlas = ExtResource("5_ik0ck")
+region = Rect2(0, 0, 2000, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6s8xf"]
+atlas = ExtResource("6_grwes")
+region = Rect2(0, 0, 2000, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvta3"]
+atlas = ExtResource("7_uxng0")
+region = Rect2(0, 0, 2000, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjoux"]
+atlas = ExtResource("8_w7sfv")
+region = Rect2(0, 0, 2000, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osn7w"]
+atlas = ExtResource("9_hw86d")
+region = Rect2(0, 0, 2000, 2000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v54si"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njm2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmp8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6s8xf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvta3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjoux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osn7w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="mikrafon" type="Node2D" unique_id=132951304]
 script = SubResource("GDScript_g52tk")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=166472567]
-position = Vector2(686, 472)
-scale = Vector2(10.84375, 1)
-texture = ExtResource("1_jmwcg")
-
 [node name="kontrol" type="Area2D" parent="." unique_id=1375512924]
 script = SubResource("GDScript_cpqr4")
-
-[node name="Icon" type="Sprite2D" parent="kontrol" unique_id=858418176]
-position = Vector2(627, 466)
-texture = ExtResource("1_jmwcg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="kontrol" unique_id=1952594753]
 position = Vector2(629, 470)
@@ -199,6 +254,27 @@ offset_right = 207.0
 offset_bottom = 126.0
 theme_override_font_sizes/font_size = 50
 text = "0/30"
+
+[node name="Panel" type="Panel" parent="." unique_id=1978961152]
+offset_right = 1176.0
+offset_bottom = 664.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pva61")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=210605283]
+position = Vector2(595, 209.99997)
+scale = Vector2(0.24964543, 0.21993744)
+sprite_frames = SubResource("SpriteFrames_v54si")
+autoplay = "default"
+
+[node name="Mikrafon(1)" type="Sprite2D" parent="." unique_id=1900586979]
+position = Vector2(581, 519)
+scale = Vector2(0.29168594, 0.15214914)
+texture = ExtResource("10_jwnxs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1079281577]
+stream = ExtResource("11_ik0ck")
+volume_db = -20.07
+autoplay = true
 
 [connection signal="area_entered" from="kontrol" to="kontrol" method="_on_area_entered"]
 [connection signal="area_exited" from="kontrol" to="kontrol" method="_on_area_exited"]

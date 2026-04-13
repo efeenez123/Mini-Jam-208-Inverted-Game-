@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://ki4k8inq7k83"]
+
+[ext_resource type="Script" uid="uid://dra8flrrlc4j4" path="res://Level/level_15.gd" id="1_fa502"]
+[ext_resource type="Texture2D" uid="uid://cr66q6ml5ug3r" path="res://Hastane ve dahası/hastane (1).png" id="2_t5rux"]
+[ext_resource type="Texture2D" uid="uid://b3hwki6fs1pu8" path="res://Hastane ve dahası/Kiz/kız1 (1).png" id="3_8w1yj"]
+[ext_resource type="Texture2D" uid="uid://32g8ey1edlqo" path="res://Hastane ve dahası/mikrafon (1).png" id="4_7kcuf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vm3o"]
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vutom"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dub4p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7kcuf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="level_15" type="Node2D" unique_id=1853228881]
+script = ExtResource("1_fa502")
+
+[node name="Panel" type="Panel" parent="." unique_id=1977471723]
+offset_left = -87.00001
+offset_top = -67.00001
+offset_right = 1070.0
+offset_bottom = 601.0
+scale = Vector2(1.1946679, 1.3308773)
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vm3o")
+
+[node name="Button2" type="Button" parent="Panel" unique_id=943735989]
+layout_mode = 0
+offset_left = 653.73816
+offset_top = 403.49326
+offset_right = 895.64636
+offset_bottom = 480.49323
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_vutom")
+text = "Next"
+
+[node name="Hastane(1)" type="Sprite2D" parent="." unique_id=439942259]
+position = Vector2(549.00006, 346.00006)
+scale = Vector2(0.24749102, 0.23655847)
+texture = ExtResource("2_t5rux")
+
+[node name="Label" type="Label" parent="." unique_id=1401132230]
+offset_left = 559.0
+offset_top = 324.0
+offset_right = 1361.0
+offset_bottom = 553.0
+theme_override_colors/font_color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+theme_override_font_sizes/font_size = 40
+text = "
+But the promise you made is true."
+
+[node name="Kız1(1)" type="Sprite2D" parent="." unique_id=103712679]
+position = Vector2(801, 224)
+scale = Vector2(-0.20634921, 0.17597765)
+texture = ExtResource("3_8w1yj")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=43900275]
+position = Vector2(397.00003, 355)
+scale = Vector2(0.056575365, 0.060347863)
+sprite_frames = SubResource("SpriteFrames_dub4p")
+
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]

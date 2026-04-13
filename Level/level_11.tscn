@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://dn4be3da5puwr"]
+
+[ext_resource type="Script" uid="uid://b2lfanrqyob0c" path="res://Level/level_11.gd" id="1_mdv3n"]
+[ext_resource type="Texture2D" uid="uid://cr66q6ml5ug3r" path="res://Hastane ve dahası/hastane (1).png" id="1_yqghb"]
+[ext_resource type="Texture2D" uid="uid://sexp7n2la8c3" path="res://can/kibrit+.png" id="2_gihpj"]
+[ext_resource type="Texture2D" uid="uid://32g8ey1edlqo" path="res://Hastane ve dahası/mikrafon (1).png" id="3_gihpj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdv3n"]
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5g5e0"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdv3n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gihpj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="level_11" type="Node2D" unique_id=2018254691]
+script = ExtResource("1_mdv3n")
+
+[node name="Panel" type="Panel" parent="." unique_id=2073576666]
+offset_left = -87.00001
+offset_top = -67.00001
+offset_right = 1070.0
+offset_bottom = 601.0
+scale = Vector2(1.1946679, 1.3308773)
+theme_override_styles/panel = SubResource("StyleBoxFlat_mdv3n")
+
+[node name="Button2" type="Button" parent="Panel" unique_id=338237014]
+layout_mode = 0
+offset_left = 92.91284
+offset_top = 438.05692
+offset_right = 334.82104
+offset_bottom = 515.0569
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_5g5e0")
+text = "Next"
+
+[node name="Hastane(1)" type="Sprite2D" parent="." unique_id=691405161]
+position = Vector2(549.00006, 346.00006)
+scale = Vector2(0.24749102, 0.23655847)
+texture = ExtResource("1_yqghb")
+
+[node name="Label" type="Label" parent="." unique_id=1063902327]
+offset_left = 583.0
+offset_top = 395.0
+offset_right = 1385.0
+offset_bottom = 624.0
+theme_override_colors/font_color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+theme_override_font_sizes/font_size = 40
+text = "i lost . If you want
+ to smoke, there's one more
+ person you'll have 
+to defeat by using me."
+
+[node name="Kibrit+" type="Sprite2D" parent="." unique_id=1448543808]
+position = Vector2(415.00003, 385.00003)
+scale = Vector2(0.17654575, 0.20901649)
+texture = ExtResource("2_gihpj")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1125518036]
+position = Vector2(823, 209)
+scale = Vector2(0.14226554, 0.13578269)
+sprite_frames = SubResource("SpriteFrames_mdv3n")
+
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]

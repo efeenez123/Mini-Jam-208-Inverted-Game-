@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cyvnmy0kja53q"]
+
+[ext_resource type="Script" uid="uid://ds7ga4lywlb6m" path="res://Level/level_19.gd" id="1_o8yb3"]
+[ext_resource type="Texture2D" uid="uid://cr66q6ml5ug3r" path="res://Hastane ve dahası/hastane (1).png" id="1_xk0xg"]
+[ext_resource type="Texture2D" uid="uid://32g8ey1edlqo" path="res://Hastane ve dahası/mikrafon (1).png" id="2_o8yb3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32bdd"]
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8cbq"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v425n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_o8yb3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="level_19" type="Node2D" unique_id=539921069]
+script = ExtResource("1_o8yb3")
+
+[node name="Panel" type="Panel" parent="." unique_id=1478678472]
+offset_left = -87.00001
+offset_top = -67.00001
+offset_right = 1070.0
+offset_bottom = 601.0
+scale = Vector2(1.1946679, 1.3308773)
+theme_override_styles/panel = SubResource("StyleBoxFlat_32bdd")
+
+[node name="Button2" type="Button" parent="Panel" unique_id=1664332095]
+layout_mode = 0
+offset_left = 621.9302
+offset_top = 401.2391
+offset_right = 970.1441
+offset_bottom = 478.23907
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_p8cbq")
+text = "Smoke"
+
+[node name="Hastane(1)" type="Sprite2D" parent="." unique_id=719652528]
+position = Vector2(549.00006, 346.00006)
+scale = Vector2(0.24749102, 0.23655847)
+texture = ExtResource("1_xk0xg")
+
+[node name="Label" type="Label" parent="." unique_id=995726893]
+offset_left = 630.0
+offset_top = 201.0
+offset_right = 1507.0
+offset_bottom = 662.0
+theme_override_colors/font_color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+theme_override_font_sizes/font_size = 20
+text = "She was the woman we loved years ago.
+We used to smoke too much.
+We made a promise the last time we saw her,
+before she died.
+The last two cigarettes...
+One for after she passed away,
+And one for right before reuniting with her.
+Right before dying."
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1182420945]
+position = Vector2(433, 283)
+scale = Vector2(0.028287737, 0.031762034)
+sprite_frames = SubResource("SpriteFrames_v425n")
+
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]

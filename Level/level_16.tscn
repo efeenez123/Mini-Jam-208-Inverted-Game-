@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bl26dgikh7ait"]
+
+[ext_resource type="Texture2D" uid="uid://cr66q6ml5ug3r" path="res://Hastane ve dahası/hastane (1).png" id="1_bf70s"]
+[ext_resource type="Script" uid="uid://cx8745amw6cf2" path="res://Level/level_16.gd" id="1_wd6vg"]
+[ext_resource type="Texture2D" uid="uid://b3hwki6fs1pu8" path="res://Hastane ve dahası/Kiz/kız1 (1).png" id="2_wd6vg"]
+[ext_resource type="Texture2D" uid="uid://32g8ey1edlqo" path="res://Hastane ve dahası/mikrafon (1).png" id="3_a3uof"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vuyo"]
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2ga1"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c33is"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_a3uof")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="level_16" type="Node2D" unique_id=844097381]
+script = ExtResource("1_wd6vg")
+
+[node name="Panel" type="Panel" parent="." unique_id=1863402832]
+offset_left = -87.00001
+offset_top = -67.00001
+offset_right = 1070.0
+offset_bottom = 601.0
+scale = Vector2(1.1946679, 1.3308773)
+theme_override_styles/panel = SubResource("StyleBoxFlat_2vuyo")
+
+[node name="Button2" type="Button" parent="Panel" unique_id=635886848]
+layout_mode = 0
+offset_left = 653.73816
+offset_top = 403.49326
+offset_right = 895.64636
+offset_bottom = 480.49323
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_l2ga1")
+text = "Smoke"
+
+[node name="Hastane(1)" type="Sprite2D" parent="." unique_id=1055870527]
+position = Vector2(549.00006, 346.00006)
+scale = Vector2(0.24749102, 0.23655847)
+texture = ExtResource("1_bf70s")
+
+[node name="Label" type="Label" parent="." unique_id=1796509871]
+offset_left = 7.0
+offset_top = 23.0
+offset_right = 809.0
+offset_bottom = 252.0
+theme_override_colors/font_color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+theme_override_font_sizes/font_size = 40
+
+[node name="Kız1(1)" type="Sprite2D" parent="." unique_id=1004631310]
+position = Vector2(801, 224)
+scale = Vector2(-0.20634921, 0.17597765)
+texture = ExtResource("2_wd6vg")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1833673964]
+position = Vector2(397.00003, 355)
+scale = Vector2(0.056575365, 0.060347863)
+sprite_frames = SubResource("SpriteFrames_c33is")
+
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]

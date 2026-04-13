@@ -19,6 +19,10 @@ config/icon="res://mikrafon/Sprite/icon.svg"
 
 GameManager="*uid://bbb6o4d8up0c1"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 a={

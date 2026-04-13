@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://b60m441r127sn"]
+
+[ext_resource type="Texture2D" uid="uid://cr66q6ml5ug3r" path="res://Hastane ve dahası/hastane (1).png" id="1_4rraj"]
+[ext_resource type="Script" uid="uid://b5rcva1o3ap1u" path="res://Level/level_5.gd" id="1_beiql"]
+[ext_resource type="Texture2D" uid="uid://dlfd16cgy0w62" path="res://Sigara Sahne Cizimler/kibrit/kibrit kutu titreme1.png" id="2_beiql"]
+[ext_resource type="Texture2D" uid="uid://cqj7h64grfyfn" path="res://Sigara Sahne Cizimler/sigara/sigara titreme1.png" id="3_dsiwv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbx1g"]
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qu6t"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="level_5" type="Node2D" unique_id=175146010]
+script = ExtResource("1_beiql")
+
+[node name="Panel" type="Panel" parent="." unique_id=1180720405]
+offset_left = -87.00001
+offset_top = -67.00001
+offset_right = 1070.0
+offset_bottom = 601.0
+scale = Vector2(1.1946679, 1.3308773)
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbx1g")
+
+[node name="Button2" type="Button" parent="Panel" unique_id=1811950862]
+layout_mode = 0
+offset_left = 621.9301
+offset_top = 418.52094
+offset_right = 863.8383
+offset_bottom = 495.52094
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_3qu6t")
+text = "Next"
+
+[node name="Hastane(1)" type="Sprite2D" parent="." unique_id=1691561033]
+position = Vector2(549.00006, 346.00006)
+scale = Vector2(0.24749102, 0.23655847)
+texture = ExtResource("1_4rraj")
+
+[node name="KibritKutuTitreme1" type="Sprite2D" parent="." unique_id=277201532]
+position = Vector2(704, 246)
+scale = Vector2(0.3220339, 0.30952382)
+texture = ExtResource("2_beiql")
+
+[node name="SigaraTitreme1" type="Sprite2D" parent="." unique_id=1863693556]
+position = Vector2(927.00006, 295)
+scale = Vector2(0.2988142, 0.24095774)
+texture = ExtResource("3_dsiwv")
+
+[node name="Label" type="Label" parent="." unique_id=1914728496]
+offset_left = 605.0
+offset_top = 394.0
+offset_right = 1042.0
+offset_bottom = 449.0
+theme_override_colors/font_color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+theme_override_font_sizes/font_size = 40
+text = "We lost"
+
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]

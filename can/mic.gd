@@ -62,5 +62,5 @@ func take_damage(amount):
 	if hp <= 0:
 		# BOSS ÖLDÜ! DİĞER SAHNEYE GEÇ:
 		# DİKKAT: "res://IkinciSahne.tscn" yazan yere kendi 2. sahnenin tam adını yazmalısın!
-		get_tree().change_scene_to_file("res://IkinciSahne.tscn") 
+		get_tree().change_scene_to_file("res://Level/level_11.tscn") 
 		queue_free()

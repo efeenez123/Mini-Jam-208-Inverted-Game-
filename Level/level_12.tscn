@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://b63dmfcdlvroe"]
+
+[ext_resource type="Texture2D" uid="uid://cr66q6ml5ug3r" path="res://Hastane ve dahası/hastane (1).png" id="1_t2tkr"]
+[ext_resource type="Script" uid="uid://bjst1erioyqel" path="res://Level/level_12.gd" id="1_yjjgj"]
+[ext_resource type="Texture2D" uid="uid://32g8ey1edlqo" path="res://Hastane ve dahası/mikrafon (1).png" id="3_7nmob"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjjgj"]
+bg_color = Color(0.7792914, 0.7792914, 0.7792912, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nmob"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_heewd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7nmob")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="level_12" type="Node2D" unique_id=1111821928]
+script = ExtResource("1_yjjgj")
+
+[node name="Panel" type="Panel" parent="." unique_id=577698826]
+offset_left = -87.00001
+offset_top = -67.00001
+offset_right = 1070.0
+offset_bottom = 601.0
+scale = Vector2(1.1946679, 1.3308773)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yjjgj")
+
+[node name="Button2" type="Button" parent="Panel" unique_id=891705170]
+layout_mode = 0
+offset_left = 653.73816
+offset_top = 403.49326
+offset_right = 895.64636
+offset_bottom = 480.49323
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_7nmob")
+text = "Smoke"
+
+[node name="Hastane(1)" type="Sprite2D" parent="." unique_id=92448207]
+position = Vector2(549.00006, 346.00006)
+scale = Vector2(0.24749102, 0.23655847)
+texture = ExtResource("1_t2tkr")
+
+[node name="Label" type="Label" parent="." unique_id=1421180234]
+offset_left = 585.0
+offset_top = 394.0
+offset_right = 1387.0
+offset_bottom = 623.0
+theme_override_colors/font_color = Color(0.40832946, 0.40832946, 0.40832946, 1)
+theme_override_font_sizes/font_size = 40
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=640627394]
+position = Vector2(404, 337)
+scale = Vector2(0.053349577, 0.07117641)
+sprite_frames = SubResource("SpriteFrames_heewd")
+
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_button_2_pressed"]

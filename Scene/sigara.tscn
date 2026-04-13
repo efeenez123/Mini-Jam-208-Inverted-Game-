@@ -2,6 +2,21 @@
 
 [ext_resource type="Texture2D" uid="uid://md036bywk22w" path="res://renksss.png" id="1_8owd4"]
 [ext_resource type="PackedScene" uid="uid://dpex0c370pxbd" path="res://character_body_2d.tscn" id="2_8owd4"]
+[ext_resource type="Texture2D" uid="uid://cqj7h64grfyfn" path="res://Sigara Sahne Cizimler/sigara/sigara titreme1.png" id="3_axya1"]
+[ext_resource type="AudioStream" uid="uid://c33gw06gw50m1" path="res://Ses/yürümeefe.wav" id="3_ku81y"]
+[ext_resource type="Texture2D" uid="uid://gl7lo4f1iv8o" path="res://Sigara Sahne Cizimler/sigara/sigara titreme2.png" id="4_ku81y"]
+[ext_resource type="AudioStream" uid="uid://b4kjxq3ggdqov" path="res://Ses/sarı.wav" id="4_uhfyh"]
+[ext_resource type="AudioStream" uid="uid://nuuj3a0kpdhy" path="res://Ses/patlama.wav" id="5_mjigb"]
+[ext_resource type="Texture2D" uid="uid://dx3ewtjbfgkvm" path="res://Sigara Sahne Cizimler/sigara/sigara titreme3.png" id="5_xyxku"]
+[ext_resource type="AudioStream" uid="uid://d1622l24i5lb7" path="res://Ses/efeenezoyunmuzk.wav" id="6_mjigb"]
+[ext_resource type="Texture2D" uid="uid://dcov8aof3icx3" path="res://Sigara Sahne Cizimler/sigara/sigara titreme4.png" id="6_uhfyh"]
+[ext_resource type="Texture2D" uid="uid://dlfd16cgy0w62" path="res://Sigara Sahne Cizimler/kibrit/kibrit kutu titreme1.png" id="7_mjigb"]
+[ext_resource type="Texture2D" uid="uid://m4eodo5ijhpq" path="res://Sigara Sahne Cizimler/kibrit/kibrit kutu titreme2.png" id="8_rcbvi"]
+[ext_resource type="Texture2D" uid="uid://0jhmgovq8fvo" path="res://Sigara Sahne Cizimler/kibrit/kibrit kutu titreme3.png" id="9_8yp77"]
+[ext_resource type="Texture2D" uid="uid://cvv3gtbx76rww" path="res://Sigara Sahne Cizimler/kibrit/kibrit kutu titreme4.png" id="10_ito7g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b58u4"]
+bg_color = Color(0.8346142, 0.83461434, 0.8346141, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ye4sn"]
 texture = ExtResource("1_8owd4")
@@ -12,15 +27,125 @@ texture = ExtResource("1_8owd4")
 [sub_resource type="TileSet" id="TileSet_ye4sn"]
 sources/0 = SubResource("TileSetAtlasSource_ye4sn")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl2t5"]
+atlas = ExtResource("3_axya1")
+region = Rect2(0, 0, 900, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3kms"]
+atlas = ExtResource("4_ku81y")
+region = Rect2(0, 0, 900, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6goox"]
+atlas = ExtResource("5_xyxku")
+region = Rect2(0, 0, 900, 900)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epfnk"]
+atlas = ExtResource("6_uhfyh")
+region = Rect2(0, 0, 900, 900)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ls3if"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl2t5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3kms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6goox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epfnk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyp7i"]
+atlas = ExtResource("7_mjigb")
+region = Rect2(0, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7nqj"]
+atlas = ExtResource("8_rcbvi")
+region = Rect2(0, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je5at"]
+atlas = ExtResource("9_8yp77")
+region = Rect2(0, 0, 600, 600)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7d3a"]
+atlas = ExtResource("10_ito7g")
+region = Rect2(0, 0, 600, 600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s67oy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyp7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7nqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_je5at")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7d3a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="Sigara" type="Node2D" unique_id=823316070]
 
+[node name="Panel" type="Panel" parent="." unique_id=50896528]
+offset_left = -459.0
+offset_top = -225.0
+offset_right = 768.0
+offset_bottom = 474.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b58u4")
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=602816978]
+position = Vector2(0, 2)
 tile_map_data = PackedByteArray("AAAZAAYAAAAAAAAAAAAZAAcAAAAAAAEAAAAZAAgAAAAAAAIAAAAZAAkAAAAAAAMAAAAZAAoAAAAAAAQAAAAZAAsAAAAAAAUAAAAZAAwAAAAAAAYAAAAZAA0AAAAAAAcAAAAaAAYAAAABAAAAAAAaAAcAAAABAAEAAAAaAAgAAAABAAIAAAAaAAkAAAABAAMAAAAaAAoAAAABAAQAAAAaAAsAAAABAAUAAAAaAAwAAAABAAYAAAAaAA0AAAABAAcAAAAbAAYAAAACAAAAAAAbAAcAAAACAAEAAAAbAAgAAAACAAIAAAAbAAkAAAACAAMAAAAbAAoAAAACAAQAAAAbAAsAAAACAAUAAAAbAAwAAAACAAYAAAAbAA0AAAACAAcAAAAcAAYAAAADAAAAAAAcAAcAAAADAAEAAAAcAAgAAAADAAIAAAAcAAkAAAADAAMAAAAcAAoAAAADAAQAAAAcAAsAAAADAAUAAAAcAAwAAAADAAYAAAAcAA0AAAADAAcAAAAdAAYAAAAEAAAAAAAdAAcAAAAEAAEAAAAdAAgAAAAEAAIAAAAdAAkAAAAEAAMAAAAdAAoAAAAEAAQAAAAdAAsAAAAEAAUAAAAdAAwAAAAEAAYAAAAdAA0AAAAEAAcAAAAeAAYAAAAFAAAAAAAeAAcAAAAFAAEAAAAeAAgAAAAFAAIAAAAeAAkAAAAFAAMAAAAeAAoAAAAFAAQAAAAeAAsAAAAFAAUAAAAeAAwAAAAFAAYAAAAeAA0AAAAFAAcAAAAfAAYAAAAGAAAAAAAfAAcAAAAGAAEAAAAfAAgAAAAGAAIAAAAfAAkAAAAGAAMAAAAfAAoAAAAGAAQAAAAfAAsAAAAGAAUAAAAfAAwAAAAGAAYAAAAfAA0AAAAGAAcAAAAgAAYAAAAHAAAAAAAgAAcAAAAHAAEAAAAgAAgAAAAHAAIAAAAgAAkAAAAHAAMAAAAgAAoAAAAHAAQAAAAgAAsAAAAHAAUAAAAgAAwAAAAHAAYAAAAgAA0AAAAHAAcAAAA=")
 tile_set = SubResource("TileSet_ye4sn")
 
 [node name="CharacterBody2D" parent="." unique_id=1435999456 node_paths=PackedStringArray("tilemap") instance=ExtResource("2_8owd4")]
 tilemap = NodePath("../TileMapLayer")
 
+[node name="yurume" type="AudioStreamPlayer" parent="CharacterBody2D" unique_id=1056902798]
+stream = ExtResource("3_ku81y")
+
+[node name="sari" type="AudioStreamPlayer" parent="CharacterBody2D" unique_id=1490191445]
+stream = ExtResource("4_uhfyh")
+volume_db = -8.211
+
+[node name="kirmizi" type="AudioStreamPlayer" parent="CharacterBody2D" unique_id=1350663677]
+stream = ExtResource("5_mjigb")
+volume_db = -8.211
+
+[node name="oyun" type="AudioStreamPlayer" parent="CharacterBody2D" unique_id=1189182832]
+stream = ExtResource("6_mjigb")
+volume_db = -20.982
+autoplay = true
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1555523369]
 position = Vector2(119, 106)
 zoom = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=264351694]
+position = Vector2(-83.00001, 112)
+scale = Vector2(0.24218011, 0.22903128)
+sprite_frames = SubResource("SpriteFrames_ls3if")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1426283619]
+position = Vector2(330, 87)
+scale = Vector2(0.26548782, 0.35745794)
+sprite_frames = SubResource("SpriteFrames_s67oy")
+animation = &"idle"
+autoplay = "idle"

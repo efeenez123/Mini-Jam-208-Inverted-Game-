@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://bbb6o4d8up0c1"]
 
 [ext_resource type="Script" uid="uid://4mpxynpjld8c" path="res://game_manager.gd" id="1_70yv6"]
+[ext_resource type="AudioStream" uid="uid://dghtmdlmpgoaa" path="res://Ses/arkaplan oyun mzk ara sahne.wav" id="2_smx3j"]
 
 [node name="GameManager" type="Node2D" unique_id=1247849206]
 script = ExtResource("1_70yv6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=747954156]
+stream = ExtResource("2_smx3j")
+volume_db = -58.386
+autoplay = true
