@@ -1,0 +1,212 @@
+[gd_scene format=3 uid="uid://qitt2rcrw2bc"]
+
+[ext_resource type="Texture2D" uid="uid://qy8d213s04o8" path="res://can/arka.png" id="1_j2c0f"]
+[ext_resource type="Script" uid="uid://5igi1khthoc6" path="res://can/mic.gd" id="2_s7stx"]
+[ext_resource type="Texture2D" uid="uid://b16nlu0kkl033" path="res://can/spritesheet (1).png" id="3_67b0d"]
+[ext_resource type="Script" uid="uid://d1me75lpea3m2" path="res://can/cankarakter.gd" id="4_e7n0u"]
+[ext_resource type="Texture2D" uid="uid://dtaea3y0juxsp" path="res://can/sprite_sheet.png" id="5_ejmmd"]
+[ext_resource type="AudioStream" uid="uid://dr7lka8thde2t" path="res://can/galleeew.wav" id="6_044u3"]
+[ext_resource type="Script" uid="uid://ktqgmbhmt6kv" path="res://can/yeniden_dene_butonu.gd" id="7_ihcl2"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yfyhr"]
+a = Vector2(68, -117)
+b = Vector2(0, -117)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e0gib"]
+radius = 55.108982
+
+[sub_resource type="Animation" id="Animation_s63o8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mic/ColorRect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6nyxd"]
+resource_name = "mic"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mic/ColorRect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.1666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6oaq0"]
+_data = {
+&"RESET": SubResource("Animation_s63o8"),
+&"mic": SubResource("Animation_6nyxd")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6vnl7"]
+size = Vector2(111, 53)
+
+[sub_resource type="Animation" id="Animation_e0gib"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6vnl7"]
+resource_name = "new_animation"
+length = 2.0333333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s63o8"]
+_data = {
+&"RESET": SubResource("Animation_e0gib"),
+&"new_animation": SubResource("Animation_6vnl7")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nyxd"]
+bg_color = Color(0, 0.79, 0.11849989, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6oaq0"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" unique_id=323960665]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2114585629]
+offset_left = -579.0
+offset_top = -324.0
+offset_right = 572.0
+offset_bottom = 326.0
+texture = ExtResource("1_j2c0f")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1121412748]
+offset_left = -586.0
+offset_top = -325.0
+offset_right = -586.0
+offset_bottom = -325.0
+color = Color(18.892157, 18.892157, 18.892157, 1)
+
+[node name="Oyunalanı" type="Node2D" parent="." unique_id=1195225233]
+
+[node name="Çevre" type="Node2D" parent="Oyunalanı" unique_id=1870859545]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Oyunalanı/Çevre" unique_id=964914106]
+
+[node name="Sprite2D" type="Sprite2D" parent="Oyunalanı/Çevre/StaticBody2D" unique_id=1619158074]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oyunalanı/Çevre/StaticBody2D" unique_id=1769594843]
+position = Vector2(48, -119)
+shape = SubResource("SegmentShape2D_yfyhr")
+
+[node name="Mic" type="Node2D" parent="." unique_id=1627748960 groups=["Boss"]]
+
+[node name="mic" type="Area2D" parent="Mic" unique_id=1642306421]
+script = ExtResource("2_s7stx")
+
+[node name="Timer" type="Timer" parent="Mic/mic" unique_id=1194085142]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mic/mic" unique_id=1678917683]
+position = Vector2(-10, -276)
+shape = SubResource("CircleShape2D_e0gib")
+
+[node name="ColorRect" type="Sprite2D" parent="Mic/mic" unique_id=9163897]
+position = Vector2(-63, -234)
+texture = ExtResource("3_67b0d")
+hframes = 3
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mic/mic" unique_id=56661769]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_6oaq0")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1482755992 groups=["Player"]]
+position = Vector2(1, 260)
+script = ExtResource("4_e7n0u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=397659154]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_6vnl7")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=815885063]
+position = Vector2(1, -10)
+texture = ExtResource("5_ejmmd")
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D" unique_id=567035468]
+root_node = NodePath("../Sprite2D")
+libraries/ = SubResource("AnimationLibrary_s63o8")
+movie_quit_on_finish = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=841346384]
+stream = ExtResource("6_044u3")
+volume_db = -16.111
+autoplay = true
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=92198284]
+layer = 10
+
+[node name="PlayerCanBar" type="ProgressBar" parent="UI" unique_id=760225864]
+offset_right = 63.0
+offset_bottom = 99.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_6nyxd")
+value = 100.0
+
+[node name="BossCanBar" type="ProgressBar" parent="UI" unique_id=1043626666]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -63.0
+offset_bottom = 99.0
+grow_horizontal = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_6oaq0")
+max_value = 60.0
+value = 60.0
+
+[node name="YenidenDeneButonu" type="Button" parent="UI" unique_id=43770198]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -15.5
+offset_right = 184.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TRY AGAIN"
+script = ExtResource("7_ihcl2")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=16027287]
